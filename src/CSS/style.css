@@ -1,0 +1,59 @@
+/*font-family: 'Inconsolata', monospace;*/
+
+
+* {
+    padding: 0;
+    margin: 0;
+    background-color: #E6FFEB;
+    font-family: 'Inconsolata', monospace;
+}
+
+h1 {
+    text-align: center;
+    font-size: 30px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+ul {
+    display:flex;
+    justify-content: stretch;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.gitLink{
+    color: grey;
+    transition: 0.2s;
+}
+
+.gitLink:hover{
+    color: black;
+}
+
+a button{
+    height: 10vh;
+    width: 34vw;
+    background-color: #5B666F;
+    font-size: 22px;
+    color: white;
+}
+
+a button:hover{
+    background-color: #2E2C33;
+}
+
+ul {
+    display:flex;
+    justify-content: space-between;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    align-items: center;
+}
