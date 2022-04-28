@@ -27,6 +27,10 @@ a {
 
 
 .gitLink{
+    position:sticky;
+    margin-bottom: 2vh;
+    margin-left: 95vw;
+    font-size: 69px;
     color: grey;
     transition: 0.2s;
 }
@@ -37,7 +41,7 @@ a {
 
 a button{
     height: 10vh;
-    width: 34vw;
+    width: 33.3vw;
     background-color: #5B666F;
     font-size: 22px;
     color: white;
