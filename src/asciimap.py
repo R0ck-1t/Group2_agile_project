@@ -37,7 +37,7 @@ class AsciiMap:
 			x_convert = coord[0] - 1
 			y_convert = (coord[1] - 1) * line_count
 			every_extra_line_at = round(1 / remainder)
-			if (x_convert < 0) or (y_convert < 0) or (x_convert >= self.dimensions[0]) or (coord[1] >= self.dimensions[1]):
+			if (x_convert < 0) or (y_convert < 0) or (x_convert >= self.dimensions[0]) or ((coord[1] - 1) >= self.dimensions[1]):
 				tile_string = " " * self.length_of_tile
 				if (y // every_extra_line_at) == 0:
 					tile = [tile_string, tile_string, tile_string, tile_string]
