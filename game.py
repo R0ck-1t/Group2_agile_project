@@ -65,15 +65,19 @@ class Game():
         elif prefix in move_prefixes:
             if postfix in north:
                 self.map.move('north')
+                self.map.map_graphics.print_tiles(self.map.location)
                 return 1
             elif postfix in south:
                 self.map.move('south')
+                self.map.map_graphics.print_tiles(self.map.location)
                 return 1
             elif postfix in west:
                 self.map.move('west')
+                self.map.map_graphics.print_tiles(self.map.location)
                 return 1
             elif postfix in east:
                 self.map.move('east')
+                self.map.map_graphics.print_tiles(self.map.location)
                 return 1
             else:
                 return 3

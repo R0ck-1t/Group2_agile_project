@@ -1,5 +1,6 @@
 from src.building import Building
 from src.globalmap import GlobalMap
+from src.character import Character
 #      1 2 3 4 5 6
 #    X X X X X X X X    *Rockstone Village*
 # 1  X X ^ X E X X X    E = Exit
@@ -14,10 +15,12 @@ rockstone_roads = [[2, 2], [2, 4], [3, 2], [3, 3], [3, 4], [3, 5], [4, 2], [4, 4
 rockstone_instances = [[1, 2], [5, 1], [2, 5]]
 rockstone_limits = [5, 6]
 
+#rockstone_village = Village('Rockstone Village')
+
 
 class Village(GlobalMap):
     
-    def __init__(self, name, buildings, map, exits=[], roads=[], instances=[], limits=[0, 0]):
+    def __init__(self, name: str, buildings, map, exits: list, roads: list, instances: list, limits=[0, 0]):
         """Constructor for the village. More to do"""
         self.name = name
         self.buildings = buildings
@@ -38,7 +41,7 @@ class Village(GlobalMap):
         print(self.instances)
         print(self.impassable)
 
-    def move(self, direction):
+    def move(self, direction): #Moves inside village. Village will need its own commands
         """
         Moves from one 'tile' to an adjacent one on the map. Ensures the tile is available and allows movement
         
@@ -88,8 +91,6 @@ class Village(GlobalMap):
         pass
 
 
-    def enter_building(self, building: Building):
-        """Enters a custom loop for the specific building. Building as parameter and then determine how function should work via the building type."""
+    def enter_building(self, building: Building, character: Character):
         pass
-
 

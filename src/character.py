@@ -10,13 +10,11 @@ class Character():
         
         list for status effects, not sure how I will implement this yet. Maybe via 'time' module."""
         self.name = name
-        self.skillpoints = 4
         self.level = 1
         self.coins = 0
         self.skills = { "attack": 4, 'strength': 3, "defense": 3, "wisdom": 3, "agility": 3, "luck": 3, "health": 10}
         self.exp = 0
         self.exp_to_level = 69
-        self.status = {'poison': False, 'bleed': False, 'feared': False, 'weakened': False, 'slowed': False, 'blinded': False, 'muted': False, 'fatigued': False, 'exhausted': False, 'vulnerable': False, 'restrained': False, 'slept': False, 'stunned': False, 'paralyzed': False, 'burned': False, 'chilled': False, 'stressed': False, 'furious': False}
         self.inventory = []
         sack = Gear("Old Leather Pouch", capacity=4, value=2, weight=1, slot='back')
         dagger = Gear("Rusty Dagger", weight=1, stats={'attack': 1, 'strength': 0, 'defense': 0, 'wisdom': 0, 'agility': 0, 'luck': 0, 'health': 0}, slot='weapon')
@@ -26,6 +24,7 @@ class Character():
         
 
     def unequip(self):
+        print("Running")
         #add stat removal   
         self.show_equipment(True)
         slot = input("\nWhat 'slot' would you like to unequip?\n>").lower()
@@ -129,17 +128,17 @@ class Character():
         Grants 2 skill points and runs loop forcing the user to assign all points
         """
         self.exp_to_level = round(self.exp_to_level * 1.44)
-        self.skillpoints += 2
-        while self.skillpoints > 0:
+        skillpoints = 2
+        while skillpoints > 0:
             try:
                 print(f"Skills:\nAttack - {self.skills['attack']}\nDefense - {self.skills['defense']}\nWisdom - {self.skills['wisdom']}\nAgility - {self.skills['agility']}\nHealth - {self.skills['health']} (+2 per skill point)\nLuck - {self.skills['luck']}")
-                choice = input(f"What would you like to improve? You have {self.skillpoints} skill points.\nChoices: 'attack' 'defense' 'wisdom' 'agility' 'health' 'luck'").lower()
+                choice = input(f"What would you like to improve? You have {skillpoints} skill points.\nChoices: 'attack' 'defense' 'wisdom' 'agility' 'health' 'luck'").lower()
                 if choice == "health":
                     self.skills['health'] += 2
-                    self.skillpoints -= 1
+                    skillpoints -= 1
                 else:
                     self.skills[choice] += 1
-                    self.skillpoints -= 1
+                    skillpoints -= 1
                     continue
             except (AttributeError, KeyError):
                 print("Please enter a valid choice")

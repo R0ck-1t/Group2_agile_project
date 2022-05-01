@@ -26,6 +26,9 @@
 # 14 | 0  0  0  0  P  V  0  0  1  1  1  1  1  1  1  |
 # 15 | 0  0  0  0  0  0  0  0  1  1  1  1  1  1  1  |
 #    |----------------------------------------------|
+
+from src.asciimap import AsciiMap
+
 class GlobalMap():
     
     def __init__(self): 
@@ -35,15 +38,18 @@ class GlobalMap():
         Maybe will have a list of available spawn points? Or have one that is fixed? Or random depending on difficulty.
         
         """
+        self.file_name = "./src/asciimap.txt"
         self.limits = [15, 15]
         self.exits = [0, 0]
         self.old_location = [1, 11]
         self.new_location = [1, 11]
         self.location = [1, 11]
-        self.water = [[1, 6], [1, 7], [2, 6], [4, 6], [5, 6], [5, 5], [6, 5], [7, 5], [7, 4], [7, 1], [8, 1], [8, 2], [8, 3], [8, 4], [9, 1], [9, 2], [9, 3], [9, 4], [10, 1], [10, 2], [10, 3], [11, 1], [11, 2], [11, 3], [12, 1], [12, 2]]
+        self.enemies = [[2, 11]]
+        self.enemy_fight = False
+        self.water = [[1, 6], [1, 7], [2, 6], [3, 6], [5, 6], [5, 5], [6, 5], [7, 5], [7, 4], [7, 1], [8, 1], [8, 2], [8, 3], [8, 4], [9, 1], [9, 2], [9, 3], [9, 4], [10, 1], [10, 2], [10, 3], [11, 1], [11, 2], [11, 3], [12, 1], [12, 2]]
         self.instances = [[3, 3], [14, 6], [13, 15], [7, 12], [12, 12]]
-        self.bridge = [[3, 6]]
-        self.impassable = [[1, 6], [1, 7], [2, 6], [4, 6], [5, 6], [5, 5], [6, 5], [7, 5], [7, 4], [7, 1], [8, 1], [8, 2], [8, 3], [8, 4], [9, 1], [9, 2], [9, 3], [9, 4], [10, 1], [10, 2], [10, 3], [11, 1], [11, 2], [11, 3], [12, 1], [12, 2], [4, 11], [4, 12], [4, 13], [5, 10], [5, 11], [5, 12], [5, 13], [5, 14], [6, 10], [6, 11], [6, 12], [6, 13], [6, 14], [7, 11], [7, 13]]
+        self.bridge = [[4, 6]]
+        self.impassable = [[1, 6], [1, 7], [2, 6], [3, 6], [5, 6], [5, 5], [6, 5], [7, 5], [7, 4], [7, 1], [8, 1], [8, 2], [8, 3], [8, 4], [9, 1], [9, 2], [9, 3], [9, 4], [10, 1], [10, 2], [10, 3], [11, 1], [11, 2], [11, 3], [12, 1], [12, 2], [4, 11], [4, 12], [4, 13], [5, 10], [5, 11], [5, 12], [5, 13], [5, 14], [6, 10], [6, 11], [6, 12], [6, 13], [6, 14], [7, 11], [7, 13]]
         self.trail = [[1, 11], [2, 11], [2, 10], [2, 9], [2, 9], [2, 7], [3, 7], [3, 5], [3, 4], [4, 7], [5, 7], [6, 7], [6, 6], [7, 6], [8, 6], [9, 6], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [11, 9], [11, 10,], [11, 11], [11, 12], [11, 13], [11, 14], [11, 15], [12, 15], [11, 5], [12, 5], [13, 5], [14, 5]]
         self.forest = [[9, 15], [10, 11], [10, 12], [10, 13], [10, 14], [10, 15], [12, 10], [12, 11], [12, 13], [12, 14], [13, 10], [13, 11], [13, 12], [13, 13], [13, 14], [14, 9], [14, 10], [14, 11], [14, 12], [14, 13], [14, 14], [14, 15], [15, 9], [15, 10], [15, 11], [15, 12], [15, 13], [15, 14], [15, 15]]
         plains = []
@@ -65,6 +71,7 @@ class GlobalMap():
                 else: 
                     plains.append(x)
         self.plains = plains
+        self.map_graphics = AsciiMap(self.limits, self.file_name)
 
     def check_adjacent_tiles(self):
         """Checks if type of tile is adjacent to your current tile. Maybe useful for items like fishing?
@@ -92,30 +99,34 @@ class GlobalMap():
         """
         self.old_location = self.location
         if direction == 'north':
-            self.new_location = self.location
+            self.new_location = [self.location[0], self.location[1]]
             self.new_location[0] -= 1
         elif direction == 'south':
-            self.new_location = self.location
+            self.new_location = [self.location[0], self.location[1]]
             self.new_location[0] += 1
         elif direction == 'west':
-            self.new_location = self.location
+            self.new_location = [self.location[0], self.location[1]]
             self.new_location[1] -= 1
         elif direction == 'east':
-            self.new_location = self.location
+            self.new_location = [self.location[0], self.location[1]]
             self.new_location[1] += 1
         
+        print(f"Old: {self.old_location}\nCurrent: {self.location}\nNew: {self.new_location}")
         check = self.check_valid(self.new_location)
         if check == 1:
             self.location = self.new_location
-            print(f"Moved to {self.new_location}")
+            print(self)
         elif check == 0:
             print("Unable to move in this direction!")
+            self.location = self.old_location
+            print(self)
+            print(f"Old: {self.old_location}\nCurrent: {self.location}\nNew: {self.new_location}")
         else:
             self.location = self.new_location
             self.enter_instance(self.old_location)
         
     def __repr__(self):
-        return f"Current Location: {str(self.location)}"
+        return str(f"{str(self.map_graphics.print_tiles(self.location))}\n\nCurrent Location: {str(self.location)}")
     
     def check_valid(self, coord):
         #Invalid = 0, Valid = 1, Instance = 2, Exit = 3
@@ -130,14 +141,14 @@ class GlobalMap():
                 return 0
             if (coord[1] < 1) or (coord[1] > self.limits[1]):
                 return 0
+        if coord in self.enemies:
+            self.enemy_fight = True
         return 1
 
     def enter_instance(self, enter=[]):
         """Enters a nested map or instance.
         """
         pass
-
-
 
 
 class MapInstance(GlobalMap):
