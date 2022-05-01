@@ -24,49 +24,49 @@
 # 12 | W  W  W  0  P  0  0  0  P  P  P  P  P  P  1  |
 # 13 | W  W  0  0  P  0  0  0  0  1  1  C  1  P  1  |
 # 14 | 0  0  0  0  P  0  0  0  1  1  1  1  1  V  1  |
-# 15 | 0  0  0  0  P  B  0  0  1  1  1  1  1  1  1  |
+# 15 | 0  0  0  0  P  V  0  0  1  1  1  1  1  1  1  |
 #    |----------------------------------------------|
 
 from src.asciimap import AsciiMap
 
 class GlobalMap():
     
-    def __init__(self): 
+    def __init__(self, filename : str, trails=[], waters=[], forest=[], instances=[], bridges=[], impassables=[]): 
         """Assigns tiles to a labeled list via their coordinates. 
         Generates the largest type of tiles (plains) by checking if generated tiles are already in use.
         
         Maybe will have a list of available spawn points? Or have one that is fixed? Or random depending on difficulty.
         
         """
-        self.file_name = "./src/asciimap.txt"
+        self.file_name = filename
         self.limits = [15, 15]
         self.exits = [0, 0]
         self.old_location = [1, 11]
         self.new_location = [1, 11]
         self.location = [1, 11]
-        self.enemies = [[2, 11]]
-        self.enemy_fight = False
-        self.water = [[1, 6], [1, 7], [2, 6], [3, 6], [5, 6], [5, 5], [6, 5], [7, 5], [7, 4], [7, 1], [8, 1], [8, 2], [8, 3], [8, 4], [9, 1], [9, 2], [9, 3], [9, 4], [10, 1], [10, 2], [10, 3], [11, 1], [11, 2], [11, 3], [12, 1], [12, 2]]
-        self.instances = [[3, 3], [14, 6], [13, 15], [7, 12], [12, 12]]
-        self.bridge = [[4, 6]]
-        self.impassable = [[1, 6], [1, 7], [2, 6], [3, 6], [5, 6], [5, 5], [6, 5], [7, 5], [7, 4], [7, 1], [8, 1], [8, 2], [8, 3], [8, 4], [9, 1], [9, 2], [9, 3], [9, 4], [10, 1], [10, 2], [10, 3], [11, 1], [11, 2], [11, 3], [12, 1], [12, 2], [4, 11], [4, 12], [4, 13], [5, 10], [5, 11], [5, 12], [5, 13], [5, 14], [6, 10], [6, 11], [6, 12], [6, 13], [6, 14], [7, 11], [7, 13]]
-        self.trail = [[1, 11], [2, 11], [2, 10], [2, 9], [2, 9], [2, 7], [3, 7], [3, 5], [3, 4], [4, 7], [5, 7], [6, 7], [6, 6], [7, 6], [8, 6], [9, 6], [10, 5], [10, 6], [10, 7], [10, 8], [10, 9], [11, 9], [11, 10,], [11, 11], [11, 12], [11, 13], [11, 14], [11, 15], [12, 15], [11, 5], [12, 5], [13, 5], [14, 5]]
-        self.forest = [[9, 15], [10, 11], [10, 12], [10, 13], [10, 14], [10, 15], [12, 10], [12, 11], [12, 13], [12, 14], [13, 10], [13, 11], [13, 12], [13, 13], [13, 14], [14, 9], [14, 10], [14, 11], [14, 12], [14, 13], [14, 14], [14, 15], [15, 9], [15, 10], [15, 11], [15, 12], [15, 13], [15, 14], [15, 15]]
+
+        # Water, Trail, Forest, Bridge, Impassable, Instances (Instances will be determined by their index number/coords).
+        self.waters = waters
+        self.instances = instances
+        self.bridges = bridges
+        self.impassables = impassables
+        self.trails = trails
+        self.forest = forest
         plains = []
-        for i in range(1, 16):
-            for j in range(1, 16):
-                x = [i, j]
-                if x in self.water:
+        for i in range(0, self.limits[1]):
+            for j in range(0, self.limits[0]):
+                x = [i + 1, j + 1]
+                if x in self.waters:
                     pass
                 elif x in self.instances:
                     pass
-                elif x in self.impassable:
+                elif x in self.impassables:
                     pass
-                elif x in self.trail:
+                elif x in self.trails:
                     pass
                 elif x in self.forest:
                     pass
-                elif x in self.bridge:
+                elif x in self.bridges:
                     pass
                 else: 
                     plains.append(x)
@@ -87,7 +87,7 @@ class GlobalMap():
         right[1] += 1
         adjacent_tiles = [up, down, left, right]
         for item in adjacent_tiles:
-            if item in self.water:
+            if item in self.waters:
                 return True
         
 
@@ -130,7 +130,7 @@ class GlobalMap():
     
     def check_valid(self, coord):
         #Invalid = 0, Valid = 1, Instance = 2, Exit = 3
-        if coord in self.impassable:
+        if coord in self.impassables:
             return 0
         elif coord in self.instances:
             return 2
@@ -141,8 +141,6 @@ class GlobalMap():
                 return 0
             if (coord[1] < 1) or (coord[1] > self.limits[1]):
                 return 0
-        if coord in self.enemies:
-            self.enemy_fight = True
         return 1
 
     def enter_instance(self, enter=[]):
