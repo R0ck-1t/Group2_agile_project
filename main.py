@@ -21,7 +21,7 @@ def to_do():
 
 @app.route("/test")
 def gitpage():
-  return redirect('https://github.com/R0ck-1t/Group2_agile_project')
+  return redirect('https://github.com/informationvulture/Group2_agile_project/')
 
 app.run(host='0.0.0.0', port=8080)
 
