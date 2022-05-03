@@ -1,17 +1,36 @@
 from flask import Flask, render_template, redirect, request
+from flask_bootstrap import Bootstrap
+from flask_sqlalchemy import SQLAlchemy
+from src.loginform import LoginForm
+from src.regform import RegisterForm
 app = Flask('app')
+app.config['SECRET_KEY'] = '2911DEMOKEYSUPERSECRET'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mnt/home/runner/Demo2911Website/databases/data'
+Bootstrap(app)
+db = SQLAlchemy(app)
+
+class User(db.Model):
+  id = db.Column(db.Integer, primary_key = True)
+  username = db.Column(db.String(24), unique=True)
+  email = db.Column(db.String(50), unique=True)
+  password = db.Column(db.String(80))
 
 @app.route('/')
 def home():
-  return render_template('index.html')
+  return redirect('/login', code=200)
 
-@app.route('/examples')
+@app.route('/submissions')
 def examples():
-  return render_template('examples.html')
+  return render_template('user_submissions.html')
 
-@app.route('/documentation')
+@app.route('/account')
 def documentation():
-  return render_template('documentation.html')
+  return render_template('account.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+  form = LoginForm()
+  return render_template('login.html', form=form)
 
 
 

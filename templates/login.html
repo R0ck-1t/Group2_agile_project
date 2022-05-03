@@ -1,0 +1,36 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Sign Up
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href='/static/style.css'/>
+{% endblock %}
+
+{% block content %}
+<h1>Agile Project</h1>
+<nav>
+    <ul>
+        <li><a href = {{url_for('home')}}><button>Game</button></a></li>
+        <li><a href = {{url_for('documentation')}}><button>Documentation</button></a></li>
+        <li><a href = {{url_for('examples')}}><button>Examples</button></a></li>
+    </ul>
+</nav>
+<body>
+    <div class='form_box'>
+      <form class="form-signin" method="POST" action="/login">
+        <h2 class="form-signin-header-text">Please enter your credentials.</h2>
+        {{ form.hidden_tag() }}
+        {{ wtf.form_field(form.username) }}
+        {{ wtf.form_field(form.password) }}
+        {{ wtf.form_field(form.remember) }}
+        <button class="form-button" type="submit">Log in</button>
+    </div>
+  
+</body>
+<footer><a href = {{url_for('gitpage')}}><ion-icon class = "gitLink" name="logo-github"></ion-icon></a></footer>
+</html>
+{% endblock %}
