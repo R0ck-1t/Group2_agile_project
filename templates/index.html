@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="src/CSS/style.css">
-    <script defer src="src/app.js"></script>
+    <link rel="stylesheet" href='/static/style.css'/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap" rel="stylesheet">
@@ -16,14 +15,15 @@
 <h1>Agile Project</h1>
 <nav>
     <ul>
-        <li><a href = "index.html"><button>Game</button></a></li>
-        <li><a href = "documentation.html"><button>Documentation</button></a></li>
-        <li><a href = "examples.html"><button>Examples</button></a></li>
+        <li><a href = {{url_for('home')}}><button>Game</button></a></li>
+        <li><a href = {{url_for('documentation')}}><button>Documentation</button></a></li>
+        <li><a href = {{url_for('examples')}}><button>Examples</button></a></li>
     </ul>
 </nav>
 <body>
     <h2>Demo Game</h2>
     <iframe class = "terminal" frameborder= "0" src="https://replit.com/@informationvult/2911Demo/?outputonly=1&embed=1"></iframe>
+  
 </body>
-<footer><a href = "https://github.com/R0ck-1t/Group2_agile_project"><ion-icon class = "gitLink" name="logo-github"></ion-icon></a></footer>
+<footer><a href = {{url_for('gitpage')}}><ion-icon class = "gitLink" name="logo-github"></ion-icon></a></footer>
 </html>
