@@ -8,11 +8,15 @@
     font-family: 'Inconsolata', monospace;
 }
 
+body {
+    background-color: #E6FFEB;
+}
+
 h1 {
     text-align: center;
-    font-size: 30px;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    font-size: 4rem;
+    font-family: 'Inconsolata', monospace;
+    font-weight: bolder;
 }
 
 ul {
@@ -39,7 +43,7 @@ a {
     color: black;
 }
 
-a button{
+/*a button{
     height: 10vh;
     width: 33.3vw;
     background-color: #5B666F;
@@ -49,7 +53,7 @@ a button{
 
 a button:hover{
     background-color: #2E2C33;
-}
+}*/
 
 ul {
     display:flex;
@@ -75,4 +79,80 @@ h2{
      position: fixed;
      margin-left: 15%;
      margin-right: 15%;
+}
+
+.form_box {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-signin-header-text {
+    font-weight:bolder ;
+}
+
+.form-button {
+    font-size:large;
+    font-weight: bolder;
+    margin-top: 10px;
+    background: radial-gradient(circle, rgb(146, 141, 141) 80%, rgb(78, 79, 78) 100%);
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.form-button:hover {
+    background: radial-gradient(circle, rgb(184, 171, 171) 50%, rgb(106, 106, 103) 100%);
+}
+
+
+.button_box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.sign {
+    padding-bottom: 2%;
+    display: flex;
+    margin-left: 85vw;
+    justify-content: space-evenly;
+}
+
+.signupbtn {
+    padding: 0%;
+    background-color: transparent;
+    border:none;
+    color: black;
+    font-size: large;
+    font-weight: bolder;
+}
+
+.signupbtn:hover{
+    color:#5B666F;
+}
+
+.signupbtn a {
+    height: 0%;
+    width: 0%;
+}
+
+
+.homebtn {
+    background-color: transparent;
+    border:none;
+    color:black;
+    font-size: large;
+    font-weight: bolder;
+}
+
+.homebtn:hover{
+    color: #5B666F;
+}
+
+.homebtn a {
+    height: 0%;
+    width: 0%;
 }
