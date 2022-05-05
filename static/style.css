@@ -43,7 +43,7 @@ a {
     color: black;
 }
 
-/*a button{
+.nav_button button{
     height: 10vh;
     width: 33.3vw;
     background-color: #5B666F;
@@ -51,9 +51,9 @@ a {
     color: white;
 }
 
-a button:hover{
+.nav_button button:hover{
     background-color: #2E2C33;
-}*/
+}
 
 ul {
     display:flex;
@@ -92,27 +92,23 @@ h2{
     font-weight:bolder ;
 }
 
-.form-button {
+.form_button {
+    color: white;
     font-size:large;
     font-weight: bolder;
     margin-top: 10px;
     background: radial-gradient(circle, rgb(146, 141, 141) 80%, rgb(78, 79, 78) 100%);
     padding-top: 1%;
     padding-bottom: 1%;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 12%;
+    padding-right: 12%;
 }
 
-.form-button:hover {
+
+.form_button:hover {
     background: radial-gradient(circle, rgb(184, 171, 171) 50%, rgb(106, 106, 103) 100%);
 }
 
-
-.button_box {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
 
 .sign {
     padding-bottom: 2%;

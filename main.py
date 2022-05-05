@@ -15,9 +15,15 @@ class User(db.Model):
   email = db.Column(db.String(50), unique=True)
   password = db.Column(db.String(80))
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
+  return render_template('index.html')
+
+  
+@app.route('/')
+def home1():
   return redirect('/login', code=200)
+
 
 @app.route('/submissions')
 def examples():
@@ -31,6 +37,11 @@ def documentation():
 def login():
   form = LoginForm()
   return render_template('login.html', form=form)
+
+@app.route('/signup')
+def signup():
+  form = RegisterForm()
+  return render_template('signup.html', form=form)
 
 
 

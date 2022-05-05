@@ -13,11 +13,17 @@
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <h1>Agile Project</h1>
+    <nav>
+        <ul class = "sign">
+            <li><a href = {{url_for('signup')}}><button class = "signupbtn">Sign up</button></a></li>
+            <li><a href = {{url_for('login')}}><button class = "homebtn">Log In</button></a></li>
+        </ul>
+    </nav>
 <nav>
     <ul>
-        <li><a href = {{url_for('home')}}><button>Game</button></a></li>
-        <li><a href = {{url_for('documentation')}}><button>Documentation</button></a></li>
-        <li><a href = {{url_for('examples')}}><button>Examples</button></a></li>
+        <li><a class = "nav_button" href = {{url_for('home')}}><button>Game</button></a></li>
+        <li><a class = "nav_button" href = {{url_for('documentation')}}><button>Documentation</button></a></li>
+        <li><a class = "nav_button" href = {{url_for('examples')}}><button>Examples</button></a></li>
     </ul>
 </nav>
 <body>
