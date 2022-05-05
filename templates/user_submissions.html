@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="src/CSS/style.css">
-    <script defer src="src/app.js"></script>
+    <link rel="stylesheet" href='/static/style.css'/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap" rel="stylesheet">
@@ -22,9 +21,15 @@
 </nav>
 <nav>
     <ul>
+<<<<<<< HEAD:examples.html
         <li><a href = "index.html"><button class = "navBar">Game</button></a></li>
         <li><a href = "documentation.html"><button class = "navBar">Documentation</button></a></li>
         <li><a href = "examples.html"><button class = "navBar">Examples</button></a></li>
+=======
+        <li><a href = {{url_for('home')}}><button>Game</button></a></li>
+        <li><a href = {{url_for('documentation')}}><button>Documentation</button></a></li>
+        <li><a href = {{url_for('examples')}}><button>Examples</button></a></li>
+>>>>>>> 30e948589d937ff8fc970697ae291867a180a806:templates/user_submissions.html
     </ul>
 </nav>
 <body>
