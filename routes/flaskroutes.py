@@ -1,28 +1,37 @@
-from flask import request
-import json
+from flask import Flask, render_template, redirect, request
+from flask_bootstrap import Bootstrap
+from src.loginform import LoginForm
+from src.regform import RegisterForm
 
 
 def configure_routes(app):
 
+
     @app.route('/')
-    def hello_world():
-        return 'Hello, World!'
+    def home():
+        return redirect('/login', code=200)
 
-    @app.route('/post/test', methods=['POST'])
-    def receive_post():
-        headers = request.headers
+    @app.route('/submissions')
+    def examples():
+        return render_template('user_submissions.html')
 
-        auth_token = headers.get('authorization-sha256')
-        if not auth_token:
-            return 'Unauthorized', 401
+    @app.route('/account')
+    def documentation():
+        return render_template('account.html')
 
-        data_string = request.get_data()
-        data = json.loads(data_string)
+    @app.route('/login', methods=['GET', 'POST'])
+    def login():
+        # form = LoginForm()
+        return render_template('login.html', code=200)
 
-        request_id = data.get('request_id')
-        payload = data.get('payload')
 
-        if request_id and payload:
-            return 'Ok', 200
-        else:
-            return 'Bad Request', 400
+
+    @app.route('/projects/<variable>')
+    def to_do():
+        pass
+
+    @app.route("/test")
+    def gitpage():
+        return redirect('https://github.com/informationvulture/Group2_agile_project/')
+
+    app.run(host='0.0.0.0', port=8080)
