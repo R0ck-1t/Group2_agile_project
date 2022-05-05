@@ -39,17 +39,18 @@ a {
     color: black;
 }
 
-a button{
+
+.navBar {
     height: 10vh;
     width: 33.3vw;
     background-color: #5B666F;
     font-size: 22px;
     color: white;
 }
-
-a button:hover{
+.navBar:hover{
     background-color: #2E2C33;
 }
+
 
 ul {
     display:flex;
@@ -75,4 +76,75 @@ h2{
      position: fixed;
      margin-left: 15%;
      margin-right: 15%;
+}
+
+
+
+.sign a {
+    color:green;
+    font-weight: bolder;
+    font-size: large;
+}
+
+.sign {
+    padding-bottom: 2%;
+    display: flex;
+    margin-left: 85vw;
+    justify-content: space-evenly;
+}
+
+.signupbtn {
+    background-color: transparent;
+    border:none;
+    color: black;
+    font-size: large;
+    font-weight: bolder;
+}
+
+.signupbtn:hover{
+    color:#5B666F;
+}
+
+
+.loginbtn:hover {
+    color: #5B666F;
+}
+
+.homebtn {
+    background-color: transparent;
+    border:none;
+    color:black;
+    font-size: large;
+    font-weight: bolder;
+}
+
+.form_container{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login_form{
+    padding: 10px;
+}
+
+.login_button{
+    font-size:large;
+    font-weight: bolder;
+    margin-top: 10px;
+    background: radial-gradient(circle, rgb(146, 141, 141) 80%, rgb(78, 79, 78) 100%);
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.login_button:hover {
+    background: radial-gradient(circle, rgb(184, 171, 171) 50%, rgb(106, 106, 103) 100%);
+}
+
+.text_box {
+    padding: 1%;
+    background-color: white;
 }
