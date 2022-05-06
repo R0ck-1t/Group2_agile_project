@@ -1,22 +1,20 @@
-{% extends "bootstrap/base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
-
-{% block title %}
-Sign Up
-{% endblock %}
-
-{% block styles %}
-{{ super() }}
-<link rel="stylesheet" href='/static/style.css'/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap" rel="stylesheet">
-{% endblock %}
-{% block content %}
-<h1>Log In</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap" rel="stylesheet">
+    <title>Log In</title>
+</head>
 <body>
-    <nav>
+    <h1>Login Page</h1>
+        <nav>
         <ul class = "sign">
+<<<<<<< HEAD
             <li><a href = {{url_for('signup')}}><button class = "signupbtn">Sign up</button></a></li>
             <li><a href = {{url_for('examples')}}><button class = "homebtn">Home</button></a></li>
         </ul>
@@ -35,7 +33,22 @@ Sign Up
                 type="submit">Login</button></a>
         </div>
     </div>
+=======
+            <li><a href = "signup.html"><button class = "signupbtn">Sign up</button></a></li>
+            <li><a href = "index.html"><button class = "homebtn">Home</button></a></li>
+        </ul>
+    </nav>
+    <form action="action_page.php" method="post">     
+        <div class="form_container">
+          <label for="uname" class = "login_form"><b>Username:</b></label>
+          <input type="text" class = "text_box" placeholder="Enter Username" name="uname" required>
+      
+          <label for="psw" class = "login_form"><b>Password:</b></label>
+          <input type="password" class = "text_box" placeholder="Enter Password" name="psw" required>
+      
+          <button type="submit" class = "login_button">Login</button>
+        </div>     
+      </form>
+>>>>>>> origin/main
 </body>
-<footer><a href = {{url_for('gitpage')}}><ion-icon class = "gitLink" name="logo-github"></ion-icon></a></footer>
 </html>
-{% endblock %}
