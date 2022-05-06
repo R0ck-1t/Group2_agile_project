@@ -8,6 +8,10 @@
     font-family: 'Inconsolata', monospace;
 }
 
+footer {
+  background-color: transparent;
+}
+
 body {
     background-color: #E6FFEB;
 }
@@ -151,4 +155,10 @@ h2{
 .homebtn a {
     height: 0%;
     width: 0%;
+}
+
+#user_sub_box {
+  resize: none;
+  background-color: black;
+  color: white;
 }

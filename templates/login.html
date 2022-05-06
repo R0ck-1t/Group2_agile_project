@@ -22,9 +22,10 @@ Sign Up
         </ul>
     </nav>
     <div class='form_box'>
-      <form class="form-signin" method="POST" action="/">
+      <form class="form-signin" method="POST">
         <h2 class="form-signin-header-text">Please enter your credentials.</h2>
         {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
         {{ wtf.form_field(form.username) }}
         {{ wtf.form_field(form.password) }}
         {{ wtf.form_field(form.remember) }}
