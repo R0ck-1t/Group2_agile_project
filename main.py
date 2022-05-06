@@ -48,6 +48,7 @@ def account():
   return render_template('account.html')
 
 @app.route('/login', methods=['GET', 'POST'])
+
 def login():
   form = LoginForm()
   if form.validate_on_submit():
@@ -66,7 +67,7 @@ def signup():
   
   if form.validate_on_submit():
     if form.user_password.data != form.user_confirm_password.data:
-      flash("Passwords don't match.")
+          flash("Passwords don't match.")
     else:
       new_user = User(user_name=form.user_name.data, user_email=form.user_email.data, user_password=form.user_password.data, user_bio = '')
       db.session.add(new_user)

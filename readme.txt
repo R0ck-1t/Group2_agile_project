@@ -23,7 +23,7 @@ Users
   >user email
   >user name
   >user pass
-   +profile picture
+   +profile picture maybe?
    +Bio
    +Uploaded Replits (Entity)
     >URL
