@@ -8,12 +8,11 @@
     font-family: 'Inconsolata', monospace;
 }
 
-footer {
-  background-color: transparent;
-}
-
 body {
     background-color: #E6FFEB;
+}
+footer {
+  background-color: transparent;
 }
 
 h1 {
@@ -47,7 +46,7 @@ a {
     color: black;
 }
 
-.nav_button button{
+/*a button{
     height: 10vh;
     width: 33.3vw;
     background-color: #5B666F;
@@ -55,9 +54,9 @@ a {
     color: white;
 }
 
-.nav_button button:hover{
+a button:hover{
     background-color: #2E2C33;
-}
+}*/
 
 ul {
     display:flex;
@@ -96,23 +95,27 @@ h2{
     font-weight:bolder ;
 }
 
-.form_button {
-    color: white;
+.form-button {
     font-size:large;
     font-weight: bolder;
     margin-top: 10px;
     background: radial-gradient(circle, rgb(146, 141, 141) 80%, rgb(78, 79, 78) 100%);
     padding-top: 1%;
     padding-bottom: 1%;
-    padding-left: 12%;
-    padding-right: 12%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
-
-.form_button:hover {
+.form-button:hover {
     background: radial-gradient(circle, rgb(184, 171, 171) 50%, rgb(106, 106, 103) 100%);
 }
 
+
+.button_box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 
 .sign {
     padding-bottom: 2%;
@@ -155,10 +158,4 @@ h2{
 .homebtn a {
     height: 0%;
     width: 0%;
-}
-
-#user_sub_box {
-  resize: none;
-  background-color: black;
-  color: white;
 }
