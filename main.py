@@ -66,8 +66,11 @@ def signup():
   form = RegisterForm()
   
   if form.validate_on_submit():
+    check = User.query.filter_by(user_email = form.user_email.data).first()
     if form.user_password.data != form.user_confirm_password.data:
           flash("Passwords don't match.")
+    elif form.user_email.data == check.user_email:
+      flash("Email already in use.")
     else:
       new_user = User(user_name=form.user_name.data, user_email=form.user_email.data, user_password=form.user_password.data, user_bio = '')
       db.session.add(new_user)

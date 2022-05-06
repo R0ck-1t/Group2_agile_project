@@ -18,9 +18,9 @@
     </nav>
 <nav>
     <ul>
-        <li><a class = "nav_button" href = {{ url_for('login') }}><button>Filler button</button></a></li>
-        <li><a class = "nav_button" href = {{ url_for('submissions') }}><button>User Submissions</button></a></li>
-        <li><a class = "nav_button" href = {{ url_for('account') }}><button>My Account</button></a></li>
+        <li><a href = {{ url_for('login') }}><button class = "nav_button">Filler button</button></a></li>
+        <li><a href = {{ url_for('submissions') }}><button class = "nav_button">User Submissions</button></a></li>
+        <li><a href = {{ url_for('account') }}><button class = "nav_button">My Account</button></a></li>
     </ul>
 </nav>
 <body>
