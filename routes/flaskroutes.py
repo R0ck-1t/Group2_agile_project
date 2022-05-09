@@ -19,6 +19,10 @@ def configure_routes(app):
     def documentation():
         return render_template('account.html')
 
+    @app.route('/replit')
+    def index():
+        return render_template('replit_page.html')
+        
     @app.route('/login', methods=['GET', 'POST'])
     def login():
         # form = LoginForm()
