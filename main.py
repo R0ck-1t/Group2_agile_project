@@ -91,7 +91,8 @@ def signup():
   return render_template('signup.html', form=form)
 @app.route('/logout')
 def logout():
-  pass
+  logout_user()
+  return redirect('/login')
 
 
 @app.route('/projects/<variable>')
