@@ -18,19 +18,19 @@ Sign Up
     <nav>
         <ul class = "sign">
             <li><a href = {{url_for('login')}}><button class = "signupbtn">Log in</button></a></li>
-            <li><a href = {{url_for('submissions')}}><button class = "homebtn">Home</button></a></li>
+            <li><a href = {{url_for('index')}}><button class = "homebtn">Home</button></a></li>
         </ul>
     </nav>
     <div class='form_box'>
       <form class="form-signup" method="POST">
         <h2 class="form-signup-header-text">Please enter sign up credentials.</h2>
         {{ form.hidden_tag() }}
-        {{ wtf.form_field(form.user_email) }}
-        {{ wtf.form_field(form.user_name) }}
-        {{ wtf.form_field(form.user_password) }}
+        {{ wtf.form_field(form.email) }}
+        {{ wtf.form_field(form.username) }}
+        {{ wtf.form_field(form.password) }}
         {{ wtf.form_field(form.user_confirm_password) }}
         <div class = "button_box">
-          <a href = {{url_for('home')}}>
+          <a href = {{url_for('login')}}>
             <button class="form_button"
                 type="submit">Sign Up</button></a>
         </div>

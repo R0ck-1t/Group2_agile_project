@@ -1,13 +1,10 @@
 
 
-{% block styles %}
-{{ super() }}
 <link rel="stylesheet" href='/static/style.css'/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap" rel="stylesheet">
-{% endblock %}
-{% block content %}
+
 
 <h1>Agile Project</h1>
     <nav>
@@ -18,7 +15,7 @@
     </nav>
 <nav>
     <ul>
-        <li><a href = {{ url_for('login') }}><button class = "nav_button">Filler button</button></a></li>
+        <li><a href = {{ url_for('index') }}><button class = "nav_button">Home</button></a></li>
         <li><a href = {{ url_for('submissions') }}><button class = "nav_button">User Submissions</button></a></li>
         <li><a href = {{ url_for('account') }}><button class = "nav_button">My Account</button></a></li>
     </ul>
@@ -30,4 +27,4 @@
 </body>
 <footer><a href = "{{ url_for('gitpage') }}"><ion-icon class = "gitLink" name="logo-github"></ion-icon></a></footer>
 </html>
-{% endblock %}
+
