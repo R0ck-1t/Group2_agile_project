@@ -167,3 +167,9 @@ h2{
     height: 0%;
     width: 0%;
 }
+
+#user_sub_box {
+    background-color: black;
+    color: white;
+    resize: none;
+}
