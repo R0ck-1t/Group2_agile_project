@@ -26,8 +26,8 @@ Sign Up
         <h2 class="form-signin-header-text">Please enter your credentials.</h2>
         {{ form.hidden_tag() }}
         {{ form.csrf_token }}
-        {{ wtf.form_field(form.user_name) }}
-        {{ wtf.form_field(form.user_password) }}
+        {{ wtf.form_field(form.username) }}
+        {{ wtf.form_field(form.password) }}
         {{ wtf.form_field(form.remember) }}
         <div class = "button_box">
           <a href = "{{url_for('home')}}">
