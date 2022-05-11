@@ -4,6 +4,8 @@ from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from src.loginform import LoginForm
 from src.regform import RegisterForm
+from src.userform import UserForm
+from src.submissionform import submissionForm
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import os
 
@@ -48,17 +50,25 @@ def home():
 
 @app.route('/replit', methods=['GET', 'POST'])
 def index():
-  return render_template('replit_page.html')
+  if current_user.is_authenticated:
+    return render_template('replit_page.html', name=current_user.username, email = current_user.email, bio=current_user.bio)
+  else:
+    return render_template('replit_page.html')
 
-@app.route('/submissions')
+@app.route('/submissions', methods=['GET', 'POST'])
 def submissions():
-  return render_template('user_submissions.html')
+  form = submissionForm()
+  if current_user.is_authenticated:
+    return render_template('user_submissions.html', name=current_user.username, email = current_user.email, bio=current_user.bio, form=form)
+  else:
+    return render_template('user_submissions.html', form=form)
 
-@app.route('/account')
+@app.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
+  form = UserForm()
   print(current_user)
-  return render_template('account.html', name=current_user.username, email = current_user.email, bio=current_user.bio)
+  return render_template('account.html', name=current_user.username, email = current_user.email, bio=current_user.bio, form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -89,6 +99,7 @@ def signup():
       print("Submitted New User Account!")
       return redirect('/login')
   return render_template('signup.html', form=form)
+
 @app.route('/logout')
 def logout():
   logout_user()

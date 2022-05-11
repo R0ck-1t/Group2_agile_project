@@ -8,10 +8,17 @@
 
 <h1>Agile Project</h1>
     <nav>
+        {% if current_user.is_authenticated %}
         <ul class = "sign">
-            <li><a href = "{{ url_for('signup') }}"><button class = "signupbtn">Sign up</button></a></li>
-            <li><a href = "{{ url_for('login') }}"><button class = "homebtn">Log In</button></a></li>
+            <li><a href = "{{url_for('account')}}"><button class = "accountBtn">{{ name }}</button></a></li>
+            <li><a href = "{{url_for('logout')}}"><button class = "signupbtn">Log Out</button></a></li>
         </ul>
+        {% else %}
+        <ul class = "sign">
+            <li><a href = "{{url_for('signup')}}"><button class = "signupbtn">Sign up</button></a></li>
+            <li><a href = "{{url_for('login')}}"><button class = "homebtn">Log In</button></a></li>
+        </ul>
+        {% endif %}
     </nav>
 <nav>
     <ul>

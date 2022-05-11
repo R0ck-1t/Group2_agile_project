@@ -1,4 +1,12 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Sign Up
+{% endblock %}
+
 {% block styles %}
+{{ super() }}
 <link rel="stylesheet" href='/static/style.css'/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -9,10 +17,17 @@
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <h1>Agile Project</h1>
     <nav>
+        {% if current_user.is_authenticated %}
         <ul class = "sign">
-            <li><a href = {{ url_for('signup') }}><button class = "signupbtn">Sign up</button></a></li>
-            <li><a href = {{ url_for('login') }}><button class = "homebtn">Log In</button></a></li>
+            <li><a href = "{{url_for('account')}}"><button class = "accountBtn">{{ name }}</button></a></li>
+            <li><a href = "{{url_for('logout')}}"><button class = "signupbtn">Log Out</button></a></li>
         </ul>
+        {% else %}
+        <ul class = "sign">
+            <li><a href = "{{url_for('signup')}}"><button class = "signupbtn">Sign up</button></a></li>
+            <li><a href = "{{url_for('login')}}"><button class = "homebtn">Log In</button></a></li>
+        </ul>
+        {% endif %}
     </nav>
 <nav>
     <ul>
