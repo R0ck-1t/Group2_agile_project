@@ -16,7 +16,7 @@ app.config['SECRET_KEY'] = "2911DEMOWEBSITESUPERSECRETKEY"
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///databases/database.db'
 
-#changed above to only one folder
+# changed above to only one folder
 
 db = SQLAlchemy(app)
 Bootstrap(app) 
@@ -46,7 +46,7 @@ db.session.commit()
 
 @app.route('/')
 def home():
-  return redirect('/submissions', code=200)
+  return redirect(url_for('submissions'))
 
 @app.route('/replit', methods=['GET', 'POST'])
 def index():
@@ -57,17 +57,27 @@ def index():
 
 @app.route('/submissions', methods=['GET', 'POST'])
 def submissions():
-  form = submissionForm()
   if current_user.is_authenticated:
-    return render_template('user_submissions.html', name=current_user.username, email = current_user.email, bio=current_user.bio, form=form)
-  else:
-    return render_template('user_submissions.html', form=form)
+    return render_template('user_submissions.html', name=current_user.username, email = current_user.email, bio=current_user.bio)
+  
+  return render_template('user_submissions.html', form=form)
+
+@app.route('/new_submission', methods=['GET', 'POST'])
+def new_submission():
+
+  form = submissionForm()
 
 @app.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
   form = UserForm()
   print(current_user)
+  if form.validate_on_submit():
+    current_user.bio = form.bio.data
+    print(f"Changed bio to: {form.bio.data}")
+    db.session.commit()
+    print(f"New bio: {current_user.bio}")
+    return redirect(url_for('account'))
   return render_template('account.html', name=current_user.username, email = current_user.email, bio=current_user.bio, form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
