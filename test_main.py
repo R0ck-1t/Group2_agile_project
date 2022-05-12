@@ -1,8 +1,9 @@
 import unittest
 
-from sqlalchemy import table
+from sqlalchemy import column, table
 import main
 import sqlite3
+import json
 from main import app, db, User
 from flask import url_for, request
 import flask_login
@@ -78,26 +79,36 @@ class MyTestCase(unittest.TestCase):
         con.close()
         assert "JustinTan" in str(table_list)
 
-    def test_defaultuser(self):
-        dbfile = './databases/database.db'
+    # def test_defaultuser(self):
+    #     dbfile = './databases/database.db'
 
-        # Create a SQL connection to our SQLite database.
-        con = sqlite3.connect(dbfile)
+    #     # Create a SQL connection to our SQLite database.
+    #     con = sqlite3.connect(dbfile)
 
-        # Creating initial cursor.
-        cur = con.cursor()
+    #     # Creating initial cursor.
+    #     cur = con.cursor()
 
-        # Create variable with the list of all users (unencrypted currently).
-        table_list = [a for a in cur.execute("SELECT * FROM user")]
+    #     # Create variable with the list of all users (unencrypted currently).
+    #     table_list = [a for a in cur.execute("SELECT * FROM user")]
         
 
-        # Ensuring the connection is closed.
-        con.close()
+    #     # Ensuring the connection is closed.
+    #     con.close()
 
-        # Find default user (for debugging and testing)
-        found_user = None
-        for user in table_list:
-            if user[1] == "TestUser":
-                found_user = True
-                break
-        assert found_user == True
+    #     # Find default user (for debugging and testing)
+    #     found_user = None
+    #     for user in table_list:
+    #         if user[1] == "TestUser":
+    #             found_user = True
+    #             break
+    #     assert found_user == True
+
+
+
+    def test_to_json(self):
+        """
+        Tests that the json function currently returns the
+        amount of users in the database.
+        """
+        json_data = main.to_json()
+        assert len(json_data) == 3
