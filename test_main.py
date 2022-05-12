@@ -79,31 +79,6 @@ class MyTestCase(unittest.TestCase):
         con.close()
         assert "JustinTan" in str(table_list)
 
-    # def test_defaultuser(self):
-    #     dbfile = './databases/database.db'
-
-    #     # Create a SQL connection to our SQLite database.
-    #     con = sqlite3.connect(dbfile)
-
-    #     # Creating initial cursor.
-    #     cur = con.cursor()
-
-    #     # Create variable with the list of all users (unencrypted currently).
-    #     table_list = [a for a in cur.execute("SELECT * FROM user")]
-        
-
-    #     # Ensuring the connection is closed.
-    #     con.close()
-
-    #     # Find default user (for debugging and testing)
-    #     found_user = None
-    #     for user in table_list:
-    #         if user[1] == "TestUser":
-    #             found_user = True
-    #             break
-    #     assert found_user == True
-
-
 
     def test_to_json(self):
         """
