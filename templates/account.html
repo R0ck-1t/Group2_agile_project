@@ -46,13 +46,15 @@ Sign Up
         <div>
             <p>Your current bio is: {{ bio }}</p>
             <p>New Bio:</p>
-            <form class="form-signin" method="POST">
-                <h2 class="form-signin-header-text">Please enter your credentials.</h2>
-                {{ form.hidden_tag() }}
-                {{ form.csrf_token }}
-                {{ wtf.form_field(form.bio) }}
-            <button class="form_button"
-            type="submit">Save Bio</button></a>
+                <div class="bio_form">
+                    <form class="form-signin" method="POST">
+                        <h2 class="form-signin-header-text">Please enter your Bio.</h2>
+                        {{ form.hidden_tag() }}
+                        {{ form.csrf_token }}
+                        {{ wtf.form_field(form.bio) }}
+                    <button class="form_button"
+                    type="submit">Save Bio</button></a>
+                </div>
         </div>
     </div>
     <div class = "terminal"></div>
