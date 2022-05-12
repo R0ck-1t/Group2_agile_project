@@ -99,6 +99,20 @@ h2{
     justify-content: center;
 }
 
+.form_account {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sub_form_box {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .form-signin-header-text {
     font-weight:bolder ;
 }
@@ -190,4 +204,14 @@ h2{
     background-color: black;
     color: white;
     resize: none;
+}
+
+.user_info {
+    color: black;
+    font-size: large;
+    font-weight: bolder;
+}
+
+h2 {
+    font-weight: bolder;
 }

@@ -40,14 +40,12 @@ Sign Up
 <body>
     <div>
         <h2>User Data</h2>
-        <p>Your username is: {{ name }}</p>
-        <p>Your password is: {{ password }} </p>
-        <p>Your email is: {{ email }}</p>
+        <p class = "user_info">Your username is: {{ name }}</p>
+        <p class = "user_info">Your email is: {{ email }}</p>
         <div>
-            <p>Your current bio is: {{ bio }}</p>
-            <p>New Bio:</p>
-            <form class="form-signin" method="POST">
-                <h2 class="form-signin-header-text">Please enter your credentials.</h2>
+            <p class = "user_info">Your current bio is: {{ bio }}</p>
+            <form class="form_account" method="POST">
+                <h2 class="form_account_header">Enter your new bio here:</h2>
                 {{ form.hidden_tag() }}
                 {{ form.csrf_token }}
                 {{ wtf.form_field(form.bio) }}
