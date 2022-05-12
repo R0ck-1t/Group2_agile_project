@@ -38,9 +38,16 @@ Sign Up
 </nav>
 <body>
     <h2>This is a page for user submissions</h2>>
-    <textarea id="user_sub_box" name="user_sub_box" placeholder="User submissions will go here..." rows="12" cols="65">
-</textarea>
-    <div class = "terminal"></div>
+    <div class='sub_form_box'>
+        <form class="form-submission" method="POST">
+          <h2 class="form-submission-header">You can submit your code here:</h2>
+          {{ form.hidden_tag() }}
+          {{ wtf.form_field(form.dbName) }}
+          {{ wtf.form_field(form.dbLink) }}
+          {{ wtf.form_field(form.dbDescription) }}
+          <button class="submit_button"
+            type="submit">Submit</button></a>
+    </div>
 </body>
 <footer><a href = "https://github.com/R0ck-1t/Group2_agile_project"><ion-icon class = "gitLink" name="logo-github" style = "font-size: 69px"></ion-icon></a></footer>
 </html>
