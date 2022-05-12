@@ -46,7 +46,7 @@ db.session.commit()
 
 @app.route('/')
 def home():
-  return redirect(url_for('submissions'))
+  return redirect(url_for('submissions'), code=200)
 
 @app.route('/replit', methods=['GET', 'POST'])
 def index():
