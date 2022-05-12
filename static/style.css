@@ -150,6 +150,24 @@ h2{
     width: 0%;
 }
 
+.accountBtn {
+    padding: 0%;
+    background-color: transparent;
+    border:none;
+    color: black;
+    font-size: large;
+    font-weight: bolder;
+}
+
+.accountBtn:hover{
+    color:#5B666F;
+}
+
+.accountBtn a {
+    height: 0%;
+    width: 0%;
+}
+
 
 .homebtn {
     background-color: transparent;
