@@ -60,7 +60,7 @@ def submissions():
   if current_user.is_authenticated:
     return render_template('user_submissions.html', name=current_user.username, email = current_user.email, bio=current_user.bio)
   
-  return render_template('user_submissions.html', form=form)
+  return render_template('user_submissions.html')
 
 @app.route('/new_submission', methods=['GET', 'POST'])
 def new_submission():
