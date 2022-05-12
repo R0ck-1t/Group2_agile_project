@@ -86,4 +86,5 @@ class MyTestCase(unittest.TestCase):
         amount of users in the database.
         """
         json_data = main.to_json()
+        print(json_data)
         assert len(json_data) == 3

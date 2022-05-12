@@ -143,14 +143,11 @@ def to_json():
 
   cur.execute("SELECT * FROM user")
   column_names = [d[0] for d in cur.description]
-  json_lst = []
-  for row in cur:
-      # build dict
-      info = dict(zip(column_names, row))
-      json_lst.append(info)
-
+  user_json_format = [dict(zip(column_names, row)) for row in cur]
+  
   # Ensuring the connection is closed.
   con.close()
-  return json_lst
+
+  return user_json_format
 app.run(host='0.0.0.0', port=8080)
 
