@@ -1,5 +1,6 @@
 import unittest
 from main import app
+from flask import url_for, request
 
 class MyTestCase(unittest.TestCase):
 
@@ -28,3 +29,18 @@ class MyTestCase(unittest.TestCase):
         self.app = app.test_client()
         r = self.app.get('/replit')
         assert 'Demo Game' in str(r.data)
+
+    def test_usersubmissions(self):
+        """
+        Test that the user submissions page is rendering the
+        correct template.
+        """
+        self.app = app.test_client()
+        r = self.app.get('/submissions')
+        assert 'This is a page for user submissions' in str(r.data)
+
+
+    def test_account(self):
+        self.app = app.test_client()
+        r = self.app.get("login?next=%2Faccount")
+        assert 'Please enter your credentials' in str(r.data)
