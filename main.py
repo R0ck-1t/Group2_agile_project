@@ -39,8 +39,8 @@ class User(db.Model, UserMixin):
 class Replit(db.Model):
   __tablename__ = 'replit'
   replit_id = db.Column(db.Integer, primary_key = True)
-  replit_name = db.Column(db.String(32))
-  replit_link = db.Column(db.String(256))
+  replit_name = db.Column(db.String(128))
+  replit_link = db.Column(db.String(256), unique=True)
   replit_uploader_id = db.Column(db.Integer, db.ForeignKey('user.id'))
   replit_description = db.Column(db.String(512), default = "")
 
@@ -79,13 +79,22 @@ def submissions():
 @login_required
 def new_submission():
   form = submissionForm()
-  return render_template('new_submission.html', form=form)
+  if form.validate_on_submit():
+    new_replit = Replit(replit_link=form.replit_link.data, replit_name=form.replit_name.data, replit_description=form.replit_description.data, replit_uploader_id=current_user.id)
+    db.session.add(new_replit)
+    db.session.commit()
+    return redirect(url_for('submissions'))
+  return render_template('new_submission.html', form=form, edit=False, name=current_user.username)
 
 @app.route('/account-edit', methods=['GET', 'POST'])
 @login_required
 def account_edit():
   form = UserForm()
   print(current_user)
+  if form.validate_on_submit():
+    current_user.bio = form.bio.data
+    db.session.commit()
+    return redirect(url_for('account'))
   return render_template('account.html', name=current_user.username, email = current_user.email, bio=current_user.bio, form=form, edit=True)
 
 @app.route('/account', methods=['GET', 'POST'])

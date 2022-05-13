@@ -44,13 +44,18 @@ Sign Up
         <p class = "user_info">Your email is: {{ email }}</p>
         <div>
             <p class = "user_info">Your current bio is: {{ bio }}</p>
-            <form class="form_account" method="POST">
-                <h2 class="form_account_header">Enter your new bio here:</h2>
-                {{ form.hidden_tag() }}
-                {{ form.csrf_token }}
-                {{ wtf.form_field(form.bio) }}
-            <button class="form_button"
-            type="submit">Save Bio</button></a>
+            {% if not edit %}
+            <a href={{ url_for('account_edit') }}><button class="nav_button">Edit Account</button></a>
+            {% endif %}
+            {% if edit %}
+                <form class="form_account" method="POST">
+                    <h2 class="form_account_header">Enter your new bio here:</h2>
+                    {{ form.hidden_tag() }}
+                    {{ form.csrf_token }}
+                    {{ wtf.form_field(form.bio) }}
+                <a href={{ url_for('account') }}><button class="form_button"
+                type="submit">Save Bio</button></a>
+            {% endif %}
         </div>
     </div>
     <div class = "terminal"></div>
