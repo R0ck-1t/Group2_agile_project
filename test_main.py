@@ -77,7 +77,7 @@ class MyTestCase(unittest.TestCase):
 
         # Ensuring the connection is closed.
         con.close()
-        assert "JustinTan" in str(table_list)
+        self.assertIn("JustinTan", str(table_list))
 
 
     def test_to_dict(self):
@@ -86,7 +86,7 @@ class MyTestCase(unittest.TestCase):
         amount of users in the database, in dictionary format.
         """
         dict_data = main.to_dict()
-        assert len(dict_data) == 3
+        self.assertEqual(len(dict_data), 3)
 
     def test_debugger_user(self):
         """
@@ -117,4 +117,4 @@ class MyTestCase(unittest.TestCase):
                 break
         
         # Check that the user is found
-        assert found_user == True
+        self.assertTrue(found_user)
