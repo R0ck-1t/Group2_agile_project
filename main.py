@@ -126,7 +126,7 @@ def gitpage():
   return redirect('https://github.com/informationvulture/Group2_agile_project/')
 
 
-def to_json():
+def to_dict():
   """
   Return a json representation of the database.
   """
@@ -143,11 +143,11 @@ def to_json():
 
   cur.execute("SELECT * FROM user")
   column_names = [d[0] for d in cur.description]
-  user_json_format = [dict(zip(column_names, row)) for row in cur]
+  user_dict = [dict(zip(column_names, row)) for row in cur]
   
   # Ensuring the connection is closed.
   con.close()
 
-  return user_json_format
+  return user_dict
 app.run(host='0.0.0.0', port=8080)
 

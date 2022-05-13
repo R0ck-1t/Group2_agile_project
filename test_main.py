@@ -80,10 +80,10 @@ class MyTestCase(unittest.TestCase):
         assert "JustinTan" in str(table_list)
 
 
-    def test_to_json(self):
+    def test_to_dict(self):
         """
-        Tests that the json function currently returns the
-        amount of users in the database.
+        Tests that the function currently returns the
+        amount of users in the database, in dictionary format.
         """
-        json_data = main.to_json()
-        assert len(json_data) == 3
+        dict_data = main.to_dict()
+        assert len(dict_data) == 3
