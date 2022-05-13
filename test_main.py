@@ -86,7 +86,7 @@ class MyTestCase(unittest.TestCase):
         amount of users in the database, in dictionary format.
         """
         dict_data = main.to_dict()
-        self.assertEqual(len(dict_data), 3)
+        self.assertEqual(len(dict_data), 4)
 
     def test_debugger_user(self):
         """
