@@ -10,14 +10,6 @@ import flask_login
 
 class MyTestCase(unittest.TestCase):
 
-    def test_root(self):
-        """
-        Test that the root page is returning the correct status code.
-        """
-        self.app = app.test_client()
-        r = self.app.get('/')
-        assert r.status_code == 200
-
 
     def test_random(self):
         """
@@ -44,7 +36,7 @@ class MyTestCase(unittest.TestCase):
         """
         self.app = app.test_client()
         r = self.app.get('/submissions')
-        assert 'This is a page for user submissions' in str(r.data)
+        assert 'Submit New Replit' in str(r.data)
 
 
     def test_account(self):
