@@ -87,3 +87,34 @@ class MyTestCase(unittest.TestCase):
         """
         dict_data = main.to_dict()
         assert len(dict_data) == 3
+
+    def test_debugger_user(self):
+        """
+        Tests that a default user exists which can allow
+        developers to debugg and troubleshoot the database.
+        """
+        # Create the path file which contains our database file.
+        dbfile = './databases/database.db'
+
+        # Create a SQL connection to our SQLite database.
+        con = sqlite3.connect(dbfile)
+
+        # Creating initial cursor.
+        cur = con.cursor()
+
+        # Create variable with the list of all users (unencrypted currently).
+        table_list = [a for a in cur.execute("SELECT * FROM user")]
+        
+
+        # Ensuring the connection is closed.
+        con.close()
+
+        # Find the debugger user account
+        found_user = False
+        for user in table_list:
+            if user[1] == "TestUsername" and user[2] == "TestEmailAgile@scrum.ca":
+                found_user = True
+                break
+        
+        # Check that the user is found
+        assert found_user == True
