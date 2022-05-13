@@ -45,7 +45,7 @@ Sign Up
         <div>
             <p class = "user_info">Your current bio is: {{ bio }}</p>
             {% if not edit %}
-            <a href={{ url_for('account_edit') }}><button class="nav_button">Edit Account</button></a>
+            <a href={{ url_for('account_edit') }}><button class="accountBtn">Edit Account</button></a>
             {% endif %}
             {% if edit %}
                 <form class="form_account" method="POST">

@@ -38,7 +38,10 @@ Sign Up
 </nav>
 <body>
 </body>
-    <a href= {{ url_for('new_submission') }}><button class="nav_button">Submit New Replit</button></a>
+    All User Submissions: (Not completed yet)
+    {% if current_user.is_authenticated %}
+    <a href= {{ url_for('new_submission') }}><button class="accountBtn">Submit New Replit</button></a>
+    {% endif %}
 </body>
 <footer><a href = "https://github.com/R0ck-1t/Group2_agile_project"><ion-icon class = "gitLink" name="logo-github" style = "font-size: 69px"></ion-icon></a></footer>
 </html>
