@@ -30,6 +30,7 @@ def load_user(id):
   return User.query.get(int(id))
 
 class User(db.Model, UserMixin):
+  __tablename__ = 'user'
   id = db.Column(db.Integer, primary_key = True)
   username = db.Column(db.String(24), unique=True)
   email = db.Column(db.String(50), unique=True)
@@ -37,17 +38,29 @@ class User(db.Model, UserMixin):
   bio = db.Column(db.String(512), default="")
 
 class Replit(db.Model):
+  __tablename__ = 'replit'
   replit_id = db.Column(db.Integer, primary_key = True)
-  replit_name = db.Column(db.String(32))
-  replit_link = db.Column(db.String(256))
+  replit_name = db.Column(db.String(128))
+  replit_link = db.Column(db.String(256), unique=True)
+  replit_uploader_id = db.Column(db.Integer, db.ForeignKey('user.id'))
   replit_description = db.Column(db.String(512), default = "")
-    
+
 db.create_all()
 db.session.commit()
+def ensure_test_account():
+  test_user = User.query.filter_by(username = 'TestUsername').first()
+  if test_user:
+    pass
+  else:
+    new_user = User(username="TestUsername", email="TestEmailAgile@scrum.ca", password="password", bio='test bio')
+    db.session.add(new_user)
+    db.session.commit()
+ensure_test_account()
+
 
 @app.route('/')
 def home():
-  return redirect(url_for('submissions'), code=200)
+  return redirect(url_for('submissions'))
 
 @app.route('/replit', methods=['GET', 'POST'])
 def index():
@@ -60,26 +73,37 @@ def index():
 def submissions():
   if current_user.is_authenticated:
     return render_template('user_submissions.html', name=current_user.username, email = current_user.email, bio=current_user.bio)
-  
-  return render_template('user_submissions.html')
+  else:
+    return render_template('user_submissions.html')
 
 @app.route('/new_submission', methods=['GET', 'POST'])
+@login_required
 def new_submission():
-
   form = submissionForm()
+  if form.validate_on_submit():
+    new_replit = Replit(replit_link=form.replit_link.data, replit_name=form.replit_name.data, replit_description=form.replit_description.data, replit_uploader_id=current_user.id)
+    db.session.add(new_replit)
+    db.session.commit()
+    return redirect(url_for('submissions'))
+  return render_template('new_submission.html', form=form, edit=False, name=current_user.username)
+
+@app.route('/account-edit', methods=['GET', 'POST'])
+@login_required
+def account_edit():
+  form = UserForm()
+  print(current_user)
+  if form.validate_on_submit():
+    current_user.bio = form.bio.data
+    db.session.commit()
+    return redirect(url_for('account'))
+  return render_template('account.html', name=current_user.username, email = current_user.email, bio=current_user.bio, form=form, edit=True)
 
 @app.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
   form = UserForm()
   print(current_user)
-  if form.validate_on_submit():
-    current_user.bio = form.bio.data
-    print(f"Changed bio to: {form.bio.data}")
-    db.session.commit()
-    print(f"New bio: {current_user.bio}")
-    return redirect(url_for('account'))
-  return render_template('account.html', name=current_user.username, email = current_user.email, bio=current_user.bio, form=form)
+  return render_template('account.html', name=current_user.username, email = current_user.email, bio=current_user.bio, form=form, edit=False)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
