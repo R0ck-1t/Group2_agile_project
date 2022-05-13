@@ -8,6 +8,7 @@ from src.userform import UserForm
 from src.submissionform import submissionForm
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import os
+import sqlite3, json
 
 app = Flask('app')
 secret_key = "2911DEMOWEBSITESUPERSECRETKEY"
@@ -16,7 +17,7 @@ app.config['SECRET_KEY'] = "2911DEMOWEBSITESUPERSECRETKEY"
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///databases/database.db'
 
-#changed above to only one folder
+# changed above to only one folder
 
 db = SQLAlchemy(app)
 Bootstrap(app) 
@@ -148,5 +149,29 @@ def to_do():
 def gitpage():
   return redirect('https://github.com/informationvulture/Group2_agile_project/')
 
+
+def to_dict():
+  """
+  Return a json representation of the database.
+  """
+  dbfile = './databases/database.db'
+
+  # Create a SQL connection to our SQLite database.
+  con = sqlite3.connect(dbfile)
+
+  # Creating initial cursor.
+  cur = con.cursor()
+
+  # Create variable with the list of all users (unencrypted currently).
+
+
+  cur.execute("SELECT * FROM user")
+  column_names = [d[0] for d in cur.description]
+  user_dict = [dict(zip(column_names, row)) for row in cur]
+  
+  # Ensuring the connection is closed.
+  con.close()
+
+  return user_dict
 app.run(host='0.0.0.0', port=8080)
 
