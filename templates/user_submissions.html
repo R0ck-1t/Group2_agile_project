@@ -37,16 +37,8 @@ Sign Up
     </ul>
 </nav>
 <body>
-    <div class='sub_form_box'>
-        <form class="form-submission" method="POST">
-          <h2 class="form-submission-header">You can submit your code here:</h2>
-          {{ form.hidden_tag() }}
-          {{ wtf.form_field(form.dbName) }}
-          {{ wtf.form_field(form.dbLink) }}
-          {{ wtf.form_field(form.dbDescription) }}
-          <button class="submit_button"
-            type="submit">Submit</button></a>
-    </div>
+</body>
+    <a href= {{ url_for('new_submission') }}><button class="nav_button">Submit New Replit</button></a>
 </body>
 <footer><a href = "https://github.com/R0ck-1t/Group2_agile_project"><ion-icon class = "gitLink" name="logo-github" style = "font-size: 69px"></ion-icon></a></footer>
 </html>

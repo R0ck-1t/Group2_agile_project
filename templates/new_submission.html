@@ -13,27 +13,24 @@ Sign Up
 <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap" rel="stylesheet">
 {% endblock %}
 {% block content %}
-<h1>Sign Up</h1>
+<h1>New Replit Submission</h1>
 <body>
     <nav>
-        <ul class = "sign">
-            <li><a href = {{url_for('login')}}><button class = "signupbtn">Log in</button></a></li>
-            <li><a href = {{url_for('index')}}><button class = "homebtn">Home</button></a></li>
-        </ul>
+      <ul class = "sign">
+          <li><a href = "{{url_for('account')}}"><button class = "accountBtn">{{ name }}</button></a></li>
+          <li><a href = "{{url_for('logout')}}"><button class = "signupbtn">Log Out</button></a></li>
+      </ul>
     </nav>
-    <div class='form_box'>
-      <form class="form-signup" method="POST">
-        <h2 class="form-signup-header-text">Creating a new Replit.</h2>
-        {{ form.hidden_tag() }}
-        {{ wtf.form_field(form.replit_link) }}
-        {{ wtf.form_field(form.replit_name) }}
-        {{ wtf.form_field(form.replit_description) }}
-        <div class = "button_box">
-          <a href = {{url_for('login')}}>
-            <button class="form_button"
-                type="submit">Sign Up</button></a>
-        </div>
-    </div>
+      <div class='sub_form_box'>
+          <form class="form-submission" method="POST">
+            <h2 class="form-submission-header">You can submit your code here:</h2>
+            {{ form.hidden_tag() }}
+            {{ wtf.form_field(form.replit_name) }}
+            {{ wtf.form_field(form.replit_link) }}
+            {{ wtf.form_field(form.replit_description) }}
+            <button class="submit_button"
+              type="submit">Submit</button></a>
+      </div>
 </body>
 <footer><a href = {{url_for('gitpage')}}><ion-icon class = "gitLink" name="logo-github"></ion-icon></a></footer>
 </html>
