@@ -42,6 +42,15 @@ Sign Up
     {% if current_user.is_authenticated %}
     <a href= {{ url_for('new_submission') }}><button class="accountBtn">Submit New Replit</button></a>
     {% endif %}
+    <div class="submission-div">
+        {% for item in replits %}
+        <div>
+            <a href={{ url_for('view_content', replit_id_num = item.replit_id) }}
+                <p>{{ item.replit_name }}</p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
 </body>
 <footer><a href = "https://github.com/R0ck-1t/Group2_agile_project"><ion-icon class = "gitLink" name="logo-github" style = "font-size: 69px"></ion-icon></a></footer>
 </html>
