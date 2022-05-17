@@ -62,14 +62,20 @@ ensure_test_account()
 def home():
   return redirect(url_for('submissions'))
 
-@app.route('/replit', methods=['GET', 'POST'])
+@app.route('/home', methods=['GET', 'POST'])
 def index():
   if current_user.is_authenticated:
-    return render_template('replit_page.html', name=current_user.username, email = current_user.email, bio=current_user.bio)
+    return render_template('replit_page.html', link="https://replit.com/@informationvult/2911Demo/?outputonly=1&embed=1", name=current_user.username, email = current_user.email, bio=current_user.bio)
   else:
-    return render_template('replit_page.html')
+    return render_template('replit_page.html', link="https://replit.com/@informationvult/2911Demo/?outputonly=1&embed=1")
+  
+@app.route('/view/<int:replit_id_num>', methods=['GET'])
+def view_content(replit_id_num):
+  replit_submission = Replit.query.filter_by(replit_id = replit_id_num).first()
+  return render_template('replit_page.html', link = replit_submission.replit_link)
 
-@app.route('/submissions', methods=['GET', 'POST'])
+
+@app.route('/submissions', methods=['GET'])
 def submissions():
   if current_user.is_authenticated:
     return render_template('user_submissions.html', name=current_user.username, email = current_user.email, bio=current_user.bio)
@@ -81,7 +87,13 @@ def submissions():
 def new_submission():
   form = submissionForm()
   if form.validate_on_submit():
-    new_replit = Replit(replit_link=form.replit_link.data, replit_name=form.replit_name.data, replit_description=form.replit_description.data, replit_uploader_id=current_user.id)
+    if 'replit.com' not in form.replit_link.data.lower():
+      flash('Error. Invalid URL.', 'error')
+      return
+    else:
+      url = form.replit_link.data.split('?')
+      url[0] = url[0] + '?embed=true'
+    new_replit = Replit(replit_link=url[0], replit_name=form.replit_name.data, replit_description=form.replit_description.data, replit_uploader_id=current_user.id)
     db.session.add(new_replit)
     db.session.commit()
     return redirect(url_for('submissions'))
