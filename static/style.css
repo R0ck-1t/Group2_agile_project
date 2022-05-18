@@ -181,6 +181,24 @@ h2{
     flex-direction: row;
 }
 
+.comment {
+    padding-bottom: 1%;
+    padding-top: 1%;
+    padding-left: 1%;
+    padding-right: 3%;
+    margin-bottom: 1%;
+    background-color: #c2ddc8;
+    width: fit-content;
+}
+.comment > strong {
+    background-color: #c2ddc8;
+}
+.comment > p {
+    background-color: #c2ddc8;
+    display: flex;
+    flex-direction: row;
+}
+
 .form-button:hover {
     background: radial-gradient(circle, rgb(184, 171, 171) 50%, rgb(106, 106, 103) 100%);
 >>>>>>> 20039f96cf0be493afe9a8205c57c93b13c437bb
