@@ -1,10 +1,20 @@
 
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
+{% block title %}
+{{ name }}
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
 <link rel="stylesheet" href='/static/style.css'/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap" rel="stylesheet">
 
+{% endblock %}
+{% block content %}
 
 <h1>Agile Project</h1>
     <nav>
@@ -28,10 +38,36 @@
     </ul>
 </nav>
 <body>
-    <h2>Demo Game</h2>
-    <iframe class = "terminal" frameborder= "0" src="https://replit.com/@informationvult/2911Demo/?outputonly=1&embed=1"></iframe>
-  
+    <h2>{{ replit_name }}</h2>
+    <div class="terminal-div">
+        <iframe class = "terminal" frameborder= "0" src={{ link }}></iframe>
+    </div>
+    <div class="description-div">
+        <h3>Description</h3>
+        <p>{{ description }}</p>
+    </div>
+    <div class="comment-div">
+        {% if current_user.is_authenticated %}
+            <form class="form_account" method="POST">
+                <h2>Post a comment:</h2>
+                {{ form.hidden_tag() }}
+                {{ form.csrf_token }} 
+                {{ wtf.form_field(form.content) }}
+            <button class="form_button" type="submit">Post Comment</button>
+            </form>
+        {% endif %}
+        {% for item in comments %}
+        <div class="comment">
+            <p><strong>{{ item.user }}</strong>: {{ item.content }}</p>
+            {% if item.user == current_user.username %}
+            <a href={{url_for('delete_comment', comment_id_num=item.comment_id)}}><button name="delete_button">DELETE</button></a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
 </body>
 <footer><a href = "{{ url_for('gitpage') }}"><ion-icon class = "gitLink" name="logo-github"></ion-icon></a></footer>
 </html>
 
+
+{% endblock %}
