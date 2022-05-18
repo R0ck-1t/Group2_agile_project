@@ -13,6 +13,7 @@
     display: flex;
     flex-direction: row;
     gap: 2rem;
+    border:black;
 }
 .terminal-div {
     margin-left:10%;
@@ -22,6 +23,11 @@
     margin-left:10%;
     margin-right: 10%;
     margin-bottom: 3%;
+}
+
+.description-div p {
+    color:#5B666F;
+    font-weight: bolder;
 }
 .comment-div {
     margin-left:10%;
@@ -38,6 +44,12 @@
     margin-left: 10%;
     margin-right: 10%;
 }
+
+.submission-div a {
+    color: black;
+    font-weight: bolder;
+}
+
 body {
     background-color: #E6FFEB;
 }
@@ -75,18 +87,6 @@ a {
 .gitLink:hover{
     color: black;
 }
-
-/*a button{
-    height: 10vh;
-    width: 33.3vw;
-    background-color: #5B666F;
-    font-size: 22px;
-    color: white;
-}
-
-a button:hover{
-    background-color: #2E2C33;
-}*/
 
 .nav_button {
     height: 10vh;
@@ -199,10 +199,6 @@ h2{
     flex-direction: row;
 }
 
-.form-button:hover {
-    background: radial-gradient(circle, rgb(184, 171, 171) 50%, rgb(106, 106, 103) 100%);
-}
-
 
 .button_box {
     display: flex;
@@ -285,4 +281,9 @@ h2{
 
 h2 {
     font-weight: bolder;
+}
+
+h3 {
+    color: black;
+    font-weight:900;
 }
