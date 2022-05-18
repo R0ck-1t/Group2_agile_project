@@ -117,19 +117,21 @@ h2{
     font-weight:bolder ;
 }
 
-.form-button {
+.form_button {
     font-size:large;
     font-weight: bolder;
     margin-top: 10px;
-    background: radial-gradient(circle, rgb(146, 141, 141) 80%, rgb(78, 79, 78) 100%);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    background-color:rgb(106, 106, 103);
     padding-top: 1%;
     padding-bottom: 1%;
     padding-left: 5%;
     padding-right: 5%;
+    color: white;
 }
 
-.form-button:hover {
-    background: radial-gradient(circle, rgb(184, 171, 171) 50%, rgb(106, 106, 103) 100%);
+.form_button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
 }
 
 
