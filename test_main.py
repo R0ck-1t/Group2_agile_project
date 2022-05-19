@@ -112,4 +112,4 @@ class MyTestCase(unittest.TestCase):
         # Check that the user is found
         self.assertTrue(found_user)
         
-        os.kill(self.p.pid, signal.CTRL_C_EVENT)
+    os.kill(self.p.pid, signal.CTRL_C_EVENT)
