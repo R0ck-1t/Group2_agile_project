@@ -112,5 +112,5 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(found_user)
         
         def tearDown(self):
-        self.app.terminate()
-        self.app.join()
+            self.app.terminate()
+            self.app.join()
