@@ -111,4 +111,6 @@ class MyTestCase(unittest.TestCase):
         # Check that the user is found
         self.assertTrue(found_user)
         
-        exit
+        def tearDown(self):
+        self.app.terminate()
+        self.app.join()
