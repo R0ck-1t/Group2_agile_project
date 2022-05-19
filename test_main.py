@@ -113,10 +113,3 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(found_user)
         
         
-    def test_account1(self):
-        """
-        Test that the login page renders correctly.
-        """
-        self.app = app.test_client()
-        r = self.app.get("login?next=%2Faccount")
-        assert 'Johnny Zhang' in str(r.data)
