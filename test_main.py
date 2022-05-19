@@ -1,5 +1,5 @@
 import unittest
-import signal
+import sys
 
 from sqlalchemy import column, table
 import main
@@ -112,4 +112,4 @@ class MyTestCase(unittest.TestCase):
         # Check that the user is found
         self.assertTrue(found_user)
         
-    os.kill(self.p.pid, signal.CTRL_C_EVENT)
+    sys.exit()
