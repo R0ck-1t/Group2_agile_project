@@ -113,4 +113,5 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(found_user)
         
     pytest.exit()
-    py.test.exit()
+    
+    
