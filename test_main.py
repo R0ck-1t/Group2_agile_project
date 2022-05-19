@@ -1,5 +1,5 @@
 import unittest
-import sys
+import pytest
 
 from sqlalchemy import column, table
 import main
@@ -112,4 +112,5 @@ class MyTestCase(unittest.TestCase):
         # Check that the user is found
         self.assertTrue(found_user)
         
-    sys.exit()
+    pytest.exit()
+    py.test.exit()
