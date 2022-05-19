@@ -112,7 +112,11 @@ class MyTestCase(unittest.TestCase):
         # Check that the user is found
         self.assertTrue(found_user)
         
-    def exit_stuff(self):
-        raise KeyboardInterrupt
-    
-    
+        
+    def test_account1(self):
+        """
+        Test that the login page renders correctly.
+        """
+        self.app = app.test_client()
+        r = self.app.get("login?next=%2Faccount")
+        assert 'Johnny Zhang' in str(r.data)
