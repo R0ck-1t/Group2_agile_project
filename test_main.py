@@ -110,3 +110,5 @@ class MyTestCase(unittest.TestCase):
         
         # Check that the user is found
         self.assertTrue(found_user)
+        
+        exit
