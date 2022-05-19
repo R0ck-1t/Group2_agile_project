@@ -112,6 +112,7 @@ class MyTestCase(unittest.TestCase):
         # Check that the user is found
         self.assertTrue(found_user)
         
-    pytest.exit()
+    def exit_stuff(self):
+        raise KeyboardInterrupt
     
     
