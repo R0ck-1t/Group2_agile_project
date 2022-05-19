@@ -173,5 +173,7 @@ def to_dict():
   con.close()
 
   return user_dict
-app.run(host='0.0.0.0', port=8080)
+
+if __name__ == "__main__":
+  app.run(host='0.0.0.0', port=8080)
 
