@@ -1,4 +1,5 @@
 import unittest
+import signal
 
 from sqlalchemy import column, table
 import main
@@ -111,6 +112,4 @@ class MyTestCase(unittest.TestCase):
         # Check that the user is found
         self.assertTrue(found_user)
         
-        def tearDown(self):
-            self.app.terminate()
-            self.app.join()
+        os.kill(self.p.pid, signal.CTRL_C_EVENT)
