@@ -10,14 +10,6 @@ import flask_login
 
 class MyTestCase(unittest.TestCase):
 
-    def test_root(self):
-        """
-        Test that the root page is returning the correct status code.
-        """
-        self.app = app.test_client()
-        r = self.app.get('/')
-        assert r.status_code == 200
-
 
     def test_random(self):
         """
@@ -44,7 +36,7 @@ class MyTestCase(unittest.TestCase):
         """
         self.app = app.test_client()
         r = self.app.get('/submissions')
-        assert 'This is a page for user submissions' in str(r.data)
+        assert 'Submit New Replit' in str(r.data)
 
 
     def test_account(self):
@@ -80,14 +72,6 @@ class MyTestCase(unittest.TestCase):
         self.assertIn("JustinTan", str(table_list))
 
 
-    def test_to_dict(self):
-        """
-        Tests that the function currently returns the
-        amount of users in the database, in dictionary format.
-        """
-        dict_data = main.to_dict()
-        self.assertEqual(len(dict_data), 3)
-
     def test_debugger_user(self):
         """
         Tests that a default user exists which can allow
@@ -118,3 +102,28 @@ class MyTestCase(unittest.TestCase):
         
         # Check that the user is found
         self.assertTrue(found_user)
+        
+    def test_load_user_id(self):
+        """
+        Tests the load_user function to ensure it can return
+        the correct user.
+        """
+
+        self.assertEquals(main.load_user(1).username, 'Test')
+
+    def test_root_redirect(self):
+        """
+        Tests that the root directory redirects to submissions
+        """
+        self.app = app.test_client()
+        r = self.app.get('/')
+        self.assertIn('submissions', str(r.data))
+
+
+    def test_sign_up(self):
+        """
+        Tests that the sign up page can be loaded properly.
+        """
+        self.app = app.test_client()
+        r = self.app.get('/signup')
+        self.assertIn('sign up credentials', str(r.data))
