@@ -51,5 +51,5 @@ jobs:
 
           script: |
             cd test
-            git clone ssh://git@github.com/informationvulture/Group2_agile_project.git
+            git pull
             echo "Deployment GOOD!!"
