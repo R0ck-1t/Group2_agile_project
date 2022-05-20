@@ -50,6 +50,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
 
           script: |
-            cd test
+            cd test/Group2_agile_project
             git pull
             echo "Deployment GOOD!!"
