@@ -20,13 +20,13 @@ class MyTestCase(unittest.TestCase):
         r = self.app.get('/nonexistant')
         assert r.status_code == 404
 
-    def test_replit(self):
+    def test_first_example(self):
         """
         Test that the replit page is rendering the correct template.
         """
         self.app = app.test_client()
-        r = self.app.get('/replit')
-        self.assertIn('Demo Game', str(r.data))
+        r = self.app.get('/view/1')
+        self.assertIn('Trivia Game', str(r.data))
 
     
     def test_usersubmissions(self):
