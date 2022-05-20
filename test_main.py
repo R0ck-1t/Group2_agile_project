@@ -26,7 +26,7 @@ class MyTestCase(unittest.TestCase):
         """
         self.app = app.test_client()
         r = self.app.get('/replit')
-        assert 'Demo Game' in str(r.data)
+        self.assertIn('Demo Game', str(r.data))
 
     
     def test_usersubmissions(self):
@@ -36,7 +36,7 @@ class MyTestCase(unittest.TestCase):
         """
         self.app = app.test_client()
         r = self.app.get('/submissions')
-        assert 'Submit New Replit' in str(r.data)
+        self.assertIn('User Submissions', str(r.data))
 
 
     def test_account(self):
