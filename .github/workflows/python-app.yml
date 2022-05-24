@@ -50,6 +50,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
 
           script: |
-            cd test
-            git clone ssh://git@github.com/informationvulture/Group2_agile_project.git
+            cd test/Group2_agile_project
+            git pull
             echo "Deployment GOOD!!"

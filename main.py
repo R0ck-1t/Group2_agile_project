@@ -210,29 +210,6 @@ def gitpage():
   return redirect('https://github.com/informationvulture/Group2_agile_project/')
 
 
-def to_dict():
-  """
-  Return a json representation of the database.
-  """
-  dbfile = './databases/database.db'
-
-  # Create a SQL connection to our SQLite database.
-  con = sqlite3.connect(dbfile)
-
-  # Creating initial cursor.
-  cur = con.cursor()
-
-  # Create variable with the list of all users (unencrypted currently).
-
-
-  cur.execute("SELECT * FROM user")
-  column_names = [d[0] for d in cur.description]
-  user_dict = [dict(zip(column_names, row)) for row in cur]
-  
-  # Ensuring the connection is closed.
-  con.close()
-
-  return user_dict
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0', port=8080)
