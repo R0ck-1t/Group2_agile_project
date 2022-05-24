@@ -78,7 +78,7 @@ class MyTestCase(unittest.TestCase):
         the correct user.
         """
 
-        self.assertEquals(main.load_user(1).username, 'Test')
+        self.assertEquals(main.load_user(1).username, 'TestUsername')
 
     def test_root_redirect(self):
         """
