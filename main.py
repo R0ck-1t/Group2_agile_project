@@ -8,6 +8,7 @@ from src.userform import UserForm
 from src.commentform import commentForm
 from src.submissionform import submissionForm
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import sqlite3, json
 
@@ -60,7 +61,7 @@ def ensure_test_account():
   if test_user:
     pass
   else:
-    new_user = User(username="TestUsername", email="TestEmailAgile@scrum.ca", password="password", bio='test bio')
+    new_user = User(username="TestUsername", email="TestEmailAgile@scrum.ca", password=generate_password_hash("password", method='sha256'), bio='test bio')
     db.session.add(new_user)
     db.session.commit()
 ensure_test_account()
@@ -169,7 +170,7 @@ def login():
   if form.validate_on_submit():
     user = User.query.filter_by(username = form.username.data).first()
     if user:
-      if (user.password == form.password.data):
+      if check_password_hash(user.password, form.password.data):
         login_user(user, remember=form.remember.data)
         return redirect(url_for('account'))
     
@@ -186,7 +187,8 @@ def signup():
     elif check:
       print("Email already in use.")
     else:
-      new_user = User(username=form.username.data, email=form.email.data, password=form.password.data, bio='')
+      hashed_password = generate_password_hash(form.password.data, method='sha256')
+      new_user = User(username=form.username.data, email=form.email.data, password=hashed_password, bio='')
       db.session.add(new_user)
       db.session.commit()
       print("Submitted New User Account!")

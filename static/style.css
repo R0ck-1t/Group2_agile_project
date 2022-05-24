@@ -172,6 +172,16 @@ h2{
     background-color: #c2ddc8;
     width: fit-content;
 }
+.submission-div > div {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #798a7c;
+}
+.submission-text {
+    color:#d0ffc6;
+}
 .comment > strong {
     background-color: #c2ddc8;
 }
