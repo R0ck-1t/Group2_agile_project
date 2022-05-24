@@ -69,7 +69,7 @@ class MyTestCase(unittest.TestCase):
 
         # Ensuring the connection is closed.
         con.close()
-        self.assertIn("JustinTan", str(table_list))
+        self.assertIn("Test", str(table_list))
 
 
     def test_debugger_user(self):
@@ -96,7 +96,7 @@ class MyTestCase(unittest.TestCase):
         # Find the debugger user account
         found_user = False
         for user in table_list:
-            if user[1] == "TestUsername" and user[2] == "TestEmailAgile@scrum.ca":
+            if user[1] == "Test" and user[2] == "petervanderhook@gmail.com":
                 found_user = True
                 break
         
