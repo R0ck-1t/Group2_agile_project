@@ -11,11 +11,9 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import sqlite3, json
-
 app = Flask('app')
-secret_key = "2911DEMOWEBSITESUPERSECRETKEY"
-
-app.config['SECRET_KEY'] = "2911DEMOWEBSITESUPERSECRETKEY"
+with open("./private/key.txt") as key_file:
+  app.config['SECRET_KEY'] = key_file.read()
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///databases/database.db'
 
