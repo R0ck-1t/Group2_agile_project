@@ -40,6 +40,7 @@ jobs:
         coverage run -m unittest -v
         coverage report
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Deploy 2911 App
