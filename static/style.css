@@ -34,6 +34,7 @@
     margin-right: 10%;
     padding:3%;
     margin-bottom: 15rem;
+    width: 100%;
 }
 .submission-div > div {
     max-width: 10%;
@@ -48,6 +49,8 @@
 .submission-div a {
     color: black;
     font-weight: bolder;
+    display: flex;
+    flex-flow: wrap;
 }
 
 body {
@@ -169,7 +172,7 @@ h2{
     padding-left: 1%;
     padding-right: 3%;
     margin-bottom: 1%;
-    background-color: #c2ddc8;
+    background-color: #c5e2cc;
     width: fit-content;
 }
 .submission-div > div {
@@ -181,6 +184,8 @@ h2{
 }
 .submission-text {
     color:#d0ffc6;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 .comment > strong {
     background-color: #c2ddc8;
@@ -225,11 +230,13 @@ h2{
 
 .signupbtn {
     padding: 0%;
-    background-color: transparent;
+    background-color: #d9f1de;
     border:none;
     color: black;
     font-size: large;
     font-weight: bolder;
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 .signupbtn:hover{
@@ -243,11 +250,13 @@ h2{
 
 .accountBtn {
     padding: 0%;
-    background-color: transparent;
+    background-color: #d9f1de;
     border:none;
     color: black;
     font-size: large;
     font-weight: bolder;
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 .accountBtn:hover{
