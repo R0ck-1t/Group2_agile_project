@@ -38,7 +38,7 @@ Sign Up
     </ul>
 </nav>
 <body>
-    <div>
+    <div style="margin-left: 3%;margin-right: 3%;">
         <h2>User Data</h2>
         <p class = "user_info">Your username is: {{ name }}</p>
         <p class = "user_info">Your email is: {{ email }}</p>
@@ -56,6 +56,16 @@ Sign Up
                 <a href={{ url_for('account') }}><button class="form_button"
                 type="submit">Save Bio</button></a>
             {% endif %}
+        </div>
+        <div class="submission-div">
+            {% for item in uploads %}
+            <div>
+                <a href={{ url_for('view_content', replit_id_num = item.replit_id) }}
+                    <p class="submission-text">{{ item.replit_name }}</p>
+                    <a href={{url_for('delete_replit', replit_id_num=item.replit_id)}}><button name="delete_button">DELETE</button></a>
+                </a>
+            </div>
+            {% endfor %}
         </div>
     </div>
     <div class = "terminal"></div>

@@ -2,6 +2,7 @@ from unicodedata import name
 from flask import Flask, render_template, redirect, flash, url_for
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import all_
 from src.loginform import LoginForm
 from src.regform import RegisterForm
 from src.userform import UserForm
@@ -144,23 +145,34 @@ def new_submission():
     return redirect(url_for('submissions'))
   return render_template('new_submission.html', form=form, edit=False, name=current_user.username)
 
+def get_user_uploads():
+  all_replits = Replit.query.all()
+  uploader_replits = []
+  for item in all_replits:
+    if current_user.id == item.replit_uploader_id:
+      uploader_replits.append(item)
+  return uploader_replits
+
+  
 @app.route('/account-edit', methods=['GET', 'POST'])
 @login_required
 def account_edit():
   form = UserForm()
   print(current_user)
+  user_uploads = get_user_uploads()
   if form.validate_on_submit():
     current_user.bio = form.bio.data
     db.session.commit()
     return redirect(url_for('account'))
-  return render_template('account.html', name=current_user.username, email = current_user.email, bio=current_user.bio, form=form, edit=True)
+  return render_template('account.html', name=current_user.username, email = current_user.email, bio=current_user.bio, form=form, uploads=user_uploads, edit=True)
 
 @app.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
   form = UserForm()
+  user_uploads = get_user_uploads()
   print(current_user)
-  return render_template('account.html', name=current_user.username, email = current_user.email, bio=current_user.bio, form=form, edit=False)
+  return render_template('account.html', name=current_user.username, email = current_user.email, bio=current_user.bio, form=form, uploads=user_uploads, edit=False)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -199,9 +211,13 @@ def logout():
   return redirect('/login')
 
 
-@app.route('/projects/<variable>')
-def to_do():
-  pass
+@app.route('/delete_replit/<replit_id_num>', methods=['GET', 'DELETE'])
+@login_required
+def delete_replit(replit_id_num):
+  replit = Replit.query.filter_by(replit_id = replit_id_num).first()
+  Replit.query.filter_by(replit_id = replit_id_num).delete()
+  db.session.commit()
+  return redirect('/account')
 
 @app.route("/test")
 def gitpage():
