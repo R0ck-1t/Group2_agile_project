@@ -168,7 +168,10 @@ h2{
     padding-right: 5%;
     color: white;
 }
-
+.form-control {
+    color: black;
+    font-weight: bold;
+}
 .form_button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
 }
@@ -282,6 +285,9 @@ h2{
     color:black;
     font-size: large;
     font-weight: bolder;
+    background-color: #d9f1de;
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 .homebtn:hover{
