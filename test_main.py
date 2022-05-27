@@ -97,11 +97,4 @@ class MyTestCase(unittest.TestCase):
         r = self.app.get('/signup')
         self.assertIn('sign up credentials', str(r.data))
 
-
-    def test_test_link(self):
-        """
-        Tests that the sign up page can be loaded properly.
-        """
-        self.app = app.test_client()
-        r = self.app.get('/test')
-        assert r.status_code == 302
+        
