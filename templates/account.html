@@ -32,7 +32,7 @@ Sign Up
     </nav>
 <nav>
     <ul>
-        <li><a href = {{ url_for('index') }}><button class = "nav_button">Home</button></a></li>
+        <li><a href = {{ url_for('index') }}><button class = "nav_button">Random</button></a></li>
         <li><a href = {{ url_for('submissions') }}><button class = "nav_button">User Submissions</button></a></li>
         <li><a href = {{ url_for('account') }}><button class = "nav_button">My Account</button></a></li>
     </ul>
@@ -57,6 +57,7 @@ Sign Up
                 type="submit">Save Bio</button></a>
             {% endif %}
         </div>
+        <div style="display:flex; justify-content:center; align-items:center;font-size: x-large;"><p><strong>Your Submissions:</strong></p></div>
         <div class="submission-div">
             {% for item in uploads %}
             <div>
