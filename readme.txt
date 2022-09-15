@@ -32,3 +32,6 @@ Users
     >Picture (Default is replit logo)
     >Output only mode (bool)
     >Lite mode (bool)
+
+Selenium info:
+- pip instlal selenium
