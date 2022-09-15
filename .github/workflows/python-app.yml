@@ -39,18 +39,5 @@ jobs:
       run: |
         coverage run -m unittest -v
         coverage report
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy 2911 App
-        uses: appleboy/ssh-action@v0.1.2
-        with:
-          host: ${{secrets.SSH_HOST}}
-          key: ${{secrets.SSH_KEY}}
-          username: ${{ secrets.SSH_USERNAME }}
 
-          script: |
-            cd test/Group2_agile_project
-            git pull
-            echo "Deployment GOOD!!"
+# There is currently no deployment, but this is in progress.
