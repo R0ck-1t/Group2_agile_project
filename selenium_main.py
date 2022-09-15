@@ -18,13 +18,24 @@ class PythonOrgSearch(unittest.TestCase):
         opts.add_argument("--headless")
         self.driver = webdriver.Firefox(options=opts)
 
-    def test_search_in_python_org(self):
+    def test_signup_page(self):
 
         driver = self.driver
         driver.get("http://127.0.0.1:8080/signup")
         self.assertIn("Sign Up", driver.title)
         self.assertNotIn("No results found.", driver.page_source)
 
+    def test_non_existant(self):
+
+        driver = self.driver
+        driver.get("http://127.0.0.1:8080/nonexistant")
+        self.assertIn("Not Found", driver.page_source)
+
+    def test_first_game(self):
+        
+        driver = self.driver
+        driver.get("http://127.0.0.1:8080/view/1")
+        self.assertIn("Trivia Game", driver.page_source)
 
     def tearDown(self):
         self.driver.close()
